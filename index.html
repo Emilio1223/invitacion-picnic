@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación Especial</title>
+    <style>
+        body {
+            background: url('sunset1.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 15vh;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .buttons button {
+            margin: 15px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        #accept {
+            background-color: green;
+            color: white;
+        }
+        #reject {
+            background-color: red;
+            color: white;
+        }
+        .hidden {
+            display: none;
+        }
+        .hearts {
+            position: absolute;
+            animation: float 3s infinite;
+            color: pink;
+            font-size: 2em;
+        }
+        @keyframes float {
+            0% { transform: translateY(10); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="mainScreen">
+        <img src="pensando.png" alt="Snoopy Pensando" width="200">  
+        <h1>¿Aceptas ir por un picnic?</h1>
+        <div class="buttons">
+            <button id="accept" onclick="showMenu()">Aceptar</button>
+            <button id="reject" onclick="showAngrySnoopy()">Rechazar</button>
+        </div>
+    </div>
+    
+    <div class="container hidden" id="angryScreen">
+        <img src="enojado.png" alt="Snoopy Enojado" width="200">  
+        <h1>GRRRRR 😡</h1>
+        <div class="buttons">
+            <button id="reject" onclick="showAngrySnoopy()">Rechazar</button>
+            <button id="accept" onclick="showMenu()">Ahora sí aceptar</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="happyScreen">
+        <img src="enamorado.png" alt="Snoopy Feliz" width="200">
+        <h1>Sabia que ibas a decir que si 😍</h1>
+        <ul>
+            <li>Hora: 14:00h.</li>
+            <li>Lugar: secreto.</li>
+            <li>Menu: cosas para picar y vinito.</li>
+            <li>Extras: serenata, pintar y jugar.</li>
+            <li>Nota: quedo atento a cualquier otra idea.</li>
+        </ul>
+    </div>
+    
+    <script>
+        function showMenu() {
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('angryScreen').classList.add('hidden');
+            document.getElementById('happyScreen').classList.remove('hidden');
+            showHearts();
+        }
+        function showAngrySnoopy() {
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('angryScreen').classList.remove('hidden');
+        }
+        function showHearts() {
+            for (let i = 0; i < 30; i++) {
+                let heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('hearts');
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(heart);
+            }
+        }
+    </script>
+</body>
+</html>
